@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="https://er-yang.github.io">
   <title>Markdown | 방종하다</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#标题一">
+  <meta name="description" content="webpack-Dev-server配置详解123456789module: &amp;#123;      rules: [          &amp;#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&amp;apos;style!css&amp;apos;) &amp;#125;, //坑：不能用叹号链接，必须写成这种格式          &amp;#123; test:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown">
 <meta property="og:url" content="https://er-yang.github.io/2017/03/06/first/index.html">
 <meta property="og:site_name" content="방종하다">
-<meta property="og:description" content="#标题一">
-<meta property="og:updated_time" content="2017-03-07T07:41:33.337Z">
+<meta property="og:description" content="webpack-Dev-server配置详解123456789module: &amp;#123;      rules: [          &amp;#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&amp;apos;style!css&amp;apos;) &amp;#125;, //坑：不能用叹号链接，必须写成这种格式          &amp;#123; test:">
+<meta property="og:updated_time" content="2017-05-20T08:55:21.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown">
-<meta name="twitter:description" content="#标题一">
+<meta name="twitter:description" content="webpack-Dev-server配置详解123456789module: &amp;#123;      rules: [          &amp;#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&amp;apos;style!css&amp;apos;) &amp;#125;, //坑：不能用叹号链接，必须写成这种格式          &amp;#123; test:">
   
     <link rel="alternative" href="/atom.xml" title="방종하다" type="application/atom+xml">
   
@@ -173,7 +173,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#标题一</p>
+        <h1 id="webpack-Dev-server配置详解"><a href="#webpack-Dev-server配置详解" class="headerlink" title="webpack-Dev-server配置详解"></a>webpack-Dev-server配置详解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">      rules: [</div><div class="line">          &#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&apos;style!css&apos;) &#125;, //坑：不能用叹号链接，必须写成这种格式</div><div class="line">          &#123; test: /\.less$/, loader: ExtractTextPlugin.extract(&apos;css!less&apos;) &#125;,</div><div class="line">          &#123; test: /\.js[x]?$/, exclude: /node_modules/, use: &apos;babel-loader&apos; &#125;,</div><div class="line">          &#123; test: /\.(png|jpg)$/, loader: &apos;url?limit=8192&amp;name=img/[name].[ext]&apos; &#125;</div><div class="line">          //&#123; test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/, use: &apos;url&apos; &#125;//url loader相当于一个文件加载器返回一个dataURL</div><div class="line">      ]</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<h3 id="配置热替换"><a href="#配置热替换" class="headerlink" title="配置热替换"></a>配置热替换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  &quot;presets&quot;: [</div><div class="line">    [&quot;es2015&quot;, &#123;&quot;modules&quot;: false&#125;],</div><div class="line">    // webpack现在已经支持原生的import语句了, 并且将其运用在tree-shaking特性上</div><div class="line"></div><div class="line">    &quot;stage-2&quot;,</div><div class="line">    // 规定JS运用的语言规范层级</div><div class="line">    // Stage 2 是 &quot;草案&quot;, 4 是 &quot;已完成&quot;, 0 is &quot;稻草人(strawman)&quot;。</div><div class="line">    // 详情查看 https://tc39.github.io/process-document/</div><div class="line"></div><div class="line">    &quot;react&quot;</div><div class="line">    // 转译React组件为JS代码</div><div class="line">  ],</div><div class="line">  &quot;plugins&quot;: [</div><div class="line">    &quot;react-hot-loader/babel&quot;</div><div class="line">    // 开启react代码的模块热替换（HMR）</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="React-Router"><a href="#React-Router" class="headerlink" title="React-Router"></a>React-Router</h1><ul>
+<li>4.0版本中没有集中式的routes配置  </li>
+<li>取消掉了IndexRoute，用switch替代<h3 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h3><h2 id="filter滤镜"><a href="#filter滤镜" class="headerlink" title="filter滤镜"></a>filter滤镜</h2>对元素直接使用模糊会将其内容全部模糊掉<br>伪元素 伪类 伪元素不属于文档，所以js无法操作它<h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position 定位"></a>position 定位</h2><ul>
+<li>relative：如果对一个元素进行相对定位，首先它将出现在它所在的位置上。然后通过设置垂直或水平位置，让这个元素”相对于”它的原始起点进行移动。（再一点，相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其他框）。  </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>absolute; 表示绝对定位，位置将依据浏览器左上角开始计算。 绝对定位使元素脱离文档流，因此不占据空间。普通文档流中元素的布局就像绝对定位的元素不存在时一样。（因为绝对定位的框与文档流无关，所以它们可以覆盖页面上的其他元素并可以通过z-index来控制它层级次序。z-index的值越高，它显示的越在上层。）。  </li>
+<li>父容器使用相对定位，子元素使用绝对定位后，这样子元素的位置不再相对于浏览器左上角，而是相对于父窗口左上角</li>
+</ul>
+<h1 id="js"><a href="#js" class="headerlink" title="js"></a>js</h1><p>标签中先执行点击事件，在点击事件返回true的前提下在执行href跳转</p>
+<p><strong>脚本在文档的何处插入，就在何处执行。当 HTML 解析器遇到一个 script 标记时，它会暂停构建 DOM，将控制权移交给 JavaScript 引擎；等 JavaScript 引擎运行完毕，浏览器会从中断的地方恢复 DOM 构建。</strong></p>
 
       
 
@@ -265,6 +279,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/05/12/prototype/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 
 
