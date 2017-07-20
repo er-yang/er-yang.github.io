@@ -38,7 +38,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay" style="background: linear-gradient(200deg,#a0cfe4,#e8c37e)"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -76,13 +76,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/er-yang" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/netyang-95/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -93,7 +93,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: linear-gradient(200deg,#a0cfe4,#e8c37e)"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -117,13 +117,13 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/er-yang" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/netyang-95/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -215,7 +215,7 @@
 <h3 id="配置热替换"><a href="#配置热替换" class="headerlink" title="配置热替换"></a>配置热替换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  &quot;presets&quot;: [</div><div class="line">    [&quot;es2015&quot;, &#123;&quot;modules&quot;: false&#125;],</div><div class="line">    // webpack现在已经支持原生的import语句了, 并且将其运用在tree-shaking特性上</div><div class="line"></div><div class="line">    &quot;stage-2&quot;,</div><div class="line">    // 规定JS运用的语言规范层级</div><div class="line">    // Stage 2 是 &quot;草案&quot;, 4 是 &quot;已完成&quot;, 0 is &quot;稻草人(strawman)&quot;。</div><div class="line">    // 详情查看 https://tc39.github.io/process-document/</div><div class="line"></div><div class="line">    &quot;react&quot;</div><div class="line">    // 转译React组件为JS代码</div><div class="line">  ],</div><div class="line">  &quot;plugins&quot;: [</div><div class="line">    &quot;react-hot-loader/babel&quot;</div><div class="line">    // 开启react代码的模块热替换（HMR）</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="React-Router"><a href="#React-Router" class="headerlink" title="React-Router"></a>React-Router</h1><ul>
 <li>4.0版本中没有集中式的routes配置  </li>
-<li>取消掉了IndexRoute，用switch替代<h3 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h3><h2 id="filter滤镜"><a href="#filter滤镜" class="headerlink" title="filter滤镜"></a>filter滤镜</h2>对元素直接使用模糊会将其内容全部模糊掉<br>伪元素 伪类 伪元素不属于文档，所以js无法操作它<h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position 定位"></a>position 定位</h2><ul>
+<li>取消掉了IndexRoute，用switch替代<h1 id="React-Fiber"><a href="#React-Fiber" class="headerlink" title="React Fiber"></a>React Fiber</h1><h3 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h3><h2 id="filter滤镜"><a href="#filter滤镜" class="headerlink" title="filter滤镜"></a>filter滤镜</h2>对元素直接使用模糊会将其内容全部模糊掉<br>伪元素 伪类 伪元素不属于文档，所以js无法操作它<h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position 定位"></a>position 定位</h2><ul>
 <li>relative：如果对一个元素进行相对定位，首先它将出现在它所在的位置上。然后通过设置垂直或水平位置，让这个元素”相对于”它的原始起点进行移动。（再一点，相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其他框）。  </li>
 </ul>
 </li>
