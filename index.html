@@ -171,69 +171,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><contents></contents></p>
-<h1 id="浏览器渲染页面"><a href="#浏览器渲染页面" class="headerlink" title="浏览器渲染页面"></a>浏览器渲染页面</h1><h3 id="构建对象模型"><a href="#构建对象模型" class="headerlink" title="构建对象模型"></a>构建对象模型</h3><p><br></p>
+        <p><Contents></p>
+<h1 id="浏览器渲染页面"><a href="#浏览器渲染页面" class="headerlink" title="浏览器渲染页面"></a>浏览器渲染页面</h1><h3 id="构建对象模型"><a href="#构建对象模型" class="headerlink" title="构建对象模型"></a>构建对象模型</h3><p></br></p>
 <ul>
 <li>文档对象模型<em>DOM</em></li>
 <li>css对象模型<em>CSSOM</em></li>
 </ul>
-<h4>DOM构建</h4>
-
-<ul>
-<li><strong><em>转换</em></strong>： 浏览器从磁盘或网络读取 HTML 的原始字节，并根据文件的指定编码（例如 UTF-8）将它们转换成各个字符</li>
-<li><strong><em>令牌化</em></strong>： 浏览器将字符串转换成 W3C HTML5 标准规定的各种令牌，例如，“<html>”、“<body>”，以及其他尖括号内的字符串。每个令牌都具有特殊含义和一组规则</body></html></li>
-<li><strong><em>词法分析</em></strong>： 发出的令牌转换成定义其属性和规则的“对象”.</li>
-<li><strong><em>DOM 构建</em></strong>： 最后，由于 HTML 标记定义不同标记之间的关系（一些标记包含在其他标记内），创建的对象链接在一个树数据结构内，此结构也会捕获原始标记中定义的父项-子项关系：HTML 对象是 body 对象的父项，body 是 paragraph 对象的父项，依此类推.</li>
-</ul>
-<p><br></p>
-<h4>CSSOM</h4>   
-
-<p> 与处理 HTML 时一样，我们需要将收到的 CSS 规则转换成某种浏览器能够理解和处理的东西。因此，我们会重复 HTML 过程，不过是为 CSS 而不是 HTML，<em>CSS 是阻塞渲染的资源&gt;</em></p>
-<p><strong>过程</strong></p>
-<ul>
-<li>DOM 树与 CSSOM 树合并后形成渲染树。</li>
-<li>渲染树只包含渲染网页所需的节点。</li>
-<li>布局计算每个对象的精确位置和大小。</li>
-<li>最后一步是绘制，使用最终渲染树将像素渲染到屏幕上  </li>
-</ul>
-<p>第一步是让浏览器将 DOM 和 CSSOM 合并成一个“渲染树”，网罗网页上所有可见的 DOM 内容，以及每个节点的所有 CSSOM 样式信息。  </p>
-<p></p><h3> 回溯<p></p>
-<p></p><p>当渲染树中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流.  </p>
-<p></p><h3> 重绘  <p></p>
-<p>当渲染树中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color.</p>
-<p><strong>引起回溯重绘的操作  </strong></p>
-<ul>
-<li>添加、删除元素(回流+重绘)</li>
-<li>隐藏元素，display:none(回流+重绘)，visibility:hidden(只重绘，不回流)</li>
-<li>移动元素，比如改变top,left,transform的值，或者移动元素到另外一个父元素中。(重绘+回流)</li>
-<li>对style的操作(对不同的属性操作，影响不一样)</li>
-<li>还有一种是用户的操作，比如改变浏览器大小，改变浏览器的字体大小等(回流+重绘)  </li>
-</ul>
-<p><strong>页面渲染机制</strong><a href="https://zhuanlan.zhihu.com/p/28374728" target="_blank" rel="external">来自</a></p>
-<p>页面渲染就是浏览器的渲染引擎将html代码根据CSS定义的规则显示在浏览器窗口中的过程。大致工作原理如下：</p>
-<ul>
-<li><p>用户输入网址，浏览器向服务器发出请求，服务器返回html文件；  </p>
-</li>
-<li><p>渲染引擎开始载入html代码，并将HTML中的标签转化为DOM节点，生成DOM树；</p>
-</li>
-<li><p>如果<head>中引用了外部css文件，则发出css文件请求，服务器返回该文件；</head></p>
-</li>
-<li><p>如果<head>中引用了外部js文件，则发出js文件请求，服务器返回该文件后开始运行；</head></p>
-</li>
-<li><p>渲染引擎继续载入html中的<body>部分的代码，并开始解析前面返回的css文件，然后根据css选择器计算出节点的样式，创建渲染树；</body></p>
-</li>
-<li><p>从根节点递归调用，计算每一个元素的大小、位置等，给每个节点所应该出现在屏幕上的精确坐标；</p>
-</li>
-<li><p>如果body中的<img>引用了图片资源，则立即向服务器发出请求，此时渲染引擎不会等待图片下载完毕，而是继续渲染后面的代码；</p>
-</li>
-<li><p>服务器返回图片文件，由于图片占用了一定面积，影响了后面段落的排版，因此引擎需要回过头来重新渲染这部分代码；</p>
-</li>
-<li><p>如果此时js脚本中运行了style.display=”none”, 布局被改变，引擎也需要重新渲染这部分代码；</p>
-</li>
-<li><p>直到为止，页面渲染完毕</p>
-</li>
-</ul>
-</h3></h3>
+        
+          <a class="article-more-a" href="/2017/08/08/webBrowser/#more">more >></a>
+        
       
 
       
@@ -281,7 +227,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/04/tag/">tag</a>
+      <a class="article-title" href="/2017/08/04/tag/">JavaScript&amp;ReactJs&amp;css</a>
     </h1>
   
 
@@ -296,18 +242,12 @@
       
         <h1 id="React学习"><a href="#React学习" class="headerlink" title="React学习"></a>React学习</h1><ul>
 <li>4.0版本中没有集中式的routes配置  </li>
-<li>取消掉了IndexRoute，用switch替代<h1 id="React-Fiber"><a href="#React-Fiber" class="headerlink" title="React Fiber"></a>React Fiber</h1><h3 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h3><h2 id="filter滤镜"><a href="#filter滤镜" class="headerlink" title="filter滤镜"></a>filter滤镜</h2>对元素直接使用模糊会将其内容全部模糊掉<br>伪元素 伪类 伪元素不属于文档，所以js无法操作它<h2 id="position-定位"><a href="#position-定位" class="headerlink" title="position 定位"></a>position 定位</h2><ul>
-<li>relative：如果对一个元素进行相对定位，首先它将出现在它所在的位置上。然后通过设置垂直或水平位置，让这个元素”相对于”它的原始起点进行移动。（再一点，相对定位时，无论是否进行移动，元素仍然占据原来的空间。因此，移动元素会导致它覆盖其他框）。  </li>
+<li>取消掉了IndexRoute，用switch替代  </li>
 </ul>
-</li>
-</ul>
-<ul>
-<li>absolute; 表示绝对定位，位置将依据浏览器左上角开始计算。 绝对定位使元素脱离文档流，因此不占据空间。普通文档流中元素的布局就像绝对定位的元素不存在时一样。（因为绝对定位的框与文档流无关，所以它们可以覆盖页面上的其他元素并可以通过z-index来控制它层级次序。z-index的值越高，它显示的越在上层。）。  </li>
-<li>父容器使用相对定位，子元素使用绝对定位后，这样子元素的位置不再相对于浏览器左上角，而是相对于父窗口左上角</li>
-</ul>
-<h1 id="js"><a href="#js" class="headerlink" title="js"></a>js</h1><p>标签中先执行点击事件，在点击事件返回true的前提下在执行href跳转</p>
-<p><strong>脚本在文档的何处插入，就在何处执行。当 HTML 解析器遇到一个 script 标记时，它会暂停构建 DOM，将控制权移交给 JavaScript 引擎；等 JavaScript 引擎运行完毕，浏览器会从中断的地方恢复 DOM 构建。</strong></p>
-
+<h1 id="React-Fiber"><a href="#React-Fiber" class="headerlink" title="React Fiber"></a>React Fiber</h1>
+        
+          <a class="article-more-a" href="/2017/08/04/tag/#more">more >></a>
+        
       
 
       
@@ -320,7 +260,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
         		</li>
       		
 		</ul>
@@ -514,7 +454,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
