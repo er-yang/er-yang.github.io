@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://er-yang.github.io">
-  <title>방종하다</title>
+  <title>JavaScript闭包与settimeout | 방종하다</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="webpack-Dev-server配置详解123456789module: &amp;#123;      rules: [          &amp;#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&amp;apos;style!css&amp;apos;) &amp;#125;, //坑：不能用叹号链接，必须写成这种格式          &amp;#123; test:">
+  <meta name="description" content="闭包settimeout">
 <meta property="og:type" content="article">
-<meta property="og:title" content="방종하다">
-<meta property="og:url" content="https://er-yang.github.io/2017/03/06/first/index.html">
+<meta property="og:title" content="JavaScript闭包与settimeout">
+<meta property="og:url" content="https://er-yang.github.io/2017/08/24/JavaScript/index.html">
 <meta property="og:site_name" content="방종하다">
-<meta property="og:description" content="webpack-Dev-server配置详解123456789module: &amp;#123;      rules: [          &amp;#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&amp;apos;style!css&amp;apos;) &amp;#125;, //坑：不能用叹号链接，必须写成这种格式          &amp;#123; test:">
-<meta property="og:updated_time" content="2017-08-04T07:22:35.231Z">
+<meta property="og:description" content="闭包settimeout">
+<meta property="og:updated_time" content="2017-10-21T05:52:56.891Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="방종하다">
-<meta name="twitter:description" content="webpack-Dev-server配置详解123456789module: &amp;#123;      rules: [          &amp;#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&amp;apos;style!css&amp;apos;) &amp;#125;, //坑：不能用叹号链接，必须写成这种格式          &amp;#123; test:">
+<meta name="twitter:title" content="JavaScript闭包与settimeout">
+<meta name="twitter:description" content="闭包settimeout">
   
     <link rel="alternative" href="/atom.xml" title="방종하다" type="application/atom+xml">
   
@@ -153,13 +153,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-first" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JavaScript" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript闭包与settimeout
+    </h1>
+  
+
+        
+        <a href="/2017/08/24/JavaScript/" class="archive-article-date">
+  	<time datetime="2017-08-24T03:33:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="webpack-Dev-server配置详解"><a href="#webpack-Dev-server配置详解" class="headerlink" title="webpack-Dev-server配置详解"></a>webpack-Dev-server配置详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">      rules: [</div><div class="line">          &#123; test: /\.css$/, loader: ExtractTextPlugin.extract(&apos;style!css&apos;) &#125;, //坑：不能用叹号链接，必须写成这种格式</div><div class="line">          &#123; test: /\.less$/, loader: ExtractTextPlugin.extract(&apos;css!less&apos;) &#125;,</div><div class="line">          &#123; test: /\.js[x]?$/, exclude: /node_modules/, use: &apos;babel-loader&apos; &#125;,</div><div class="line">          &#123; test: /\.(png|jpg)$/, loader: &apos;url?limit=8192&amp;name=img/[name].[ext]&apos; &#125;</div><div class="line">          //&#123; test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/, use: &apos;url&apos; &#125;//url loader相当于一个文件加载器返回一个dataURL</div><div class="line">      ]</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
-<h3 id="配置热替换"><a href="#配置热替换" class="headerlink" title="配置热替换"></a>配置热替换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  &quot;presets&quot;: [</div><div class="line">    [&quot;es2015&quot;, &#123;&quot;modules&quot;: false&#125;],</div><div class="line">    // webpack现在已经支持原生的import语句了, 并且将其运用在tree-shaking特性上</div><div class="line"></div><div class="line">    &quot;stage-2&quot;,</div><div class="line">    // 规定JS运用的语言规范层级</div><div class="line">    // Stage 2 是 &quot;草案&quot;, 4 是 &quot;已完成&quot;, 0 is &quot;稻草人(strawman)&quot;。</div><div class="line">    // 详情查看 https://tc39.github.io/process-document/</div><div class="line"></div><div class="line">    &quot;react&quot;</div><div class="line">    // 转译React组件为JS代码</div><div class="line">  ],</div><div class="line">  &quot;plugins&quot;: [</div><div class="line">    &quot;react-hot-loader/babel&quot;</div><div class="line">    // 开启react代码的模块热替换（HMR）</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p><contents></contents></p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h1 id="settimeout"><a href="#settimeout" class="headerlink" title="settimeout"></a>settimeout</h1><a id="more"></a>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
 
       
 
@@ -189,6 +205,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTML</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -239,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://er-yang.github.io/2017/03/06/first/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://er-yang.github.io/2017/08/24/JavaScript/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -253,15 +280,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/12/prototype/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/24/HtmlElement/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          HtmlElement
         
       </div>
     </a>
   
+  
+    <a href="/2017/08/08/webBrowser/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">页面渲染</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
